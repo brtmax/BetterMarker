@@ -34,3 +34,21 @@ public static Class Controller {
             //Returns converted image
             return output;
     }
+
+    /**
+    * Calculate the difference between two colors in the RGBA color space using the euclidean norm.
+    *
+    * @param a color a
+    * @param b color b
+    * @return euclidean distance between two colors in the RGBA color space
+    */
+    public double colorDistance(Color a, Color b) {
+
+        double diffRed = Math.abs(a.getRed() - b.getRed());
+        double diffGreen = Math.abs(a.getGreen() - b.getGreen());
+        double diffBlue = Math.abs(a.getBlue() - b.getBlue());
+
+        return Math.sqrt((diffRed * diffRed) + (diffGreen * diffGreen) + (diffBlue * diffBlue));
+    }
+
+}
