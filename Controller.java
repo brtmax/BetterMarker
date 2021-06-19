@@ -51,4 +51,44 @@ public static Class Controller {
         return Math.sqrt((diffRed * diffRed) + (diffGreen * diffGreen) + (diffBlue * diffBlue));
     }
 
+    /**
+    * This method finds the highest point in the given image that is still
+    * a part of the text.
+    * It does it by looping over the image and returning the highest or lowestY
+    * value that is not white.
+    */
+    public int getYCoordinate(ScreenImage image, String position) {
+
+        //Initialize default highest and lowest values
+        int highestY = 0;
+        int lowestY = 100000;
+
+        //Create a copy of the image to work on
+        ScreenImage toReturn = image.copy();
+
+        //Get height and width of the image
+        int height = toReturn.getHeight();
+        int width = toReturn.getWidth();
+
+        //Loop over the image pixel by pixel
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+
+                //Checks what is asked for, i.e. highest or lowest value
+                if (position.equals("Min") && y < lowestY && ) {
+                    lowestY = y;
+                } else if (position.equals("Max") && y > highestY) {
+                    highestY = y;
+                }
+            }
+        }
+
+        //Returns the specified value
+        if (position.equals("Min")) {
+            return lowestY;
+        } else {
+            return highestY;
+        }
+    }
+
 }
