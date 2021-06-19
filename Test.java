@@ -13,7 +13,7 @@ public class Test {
       File imageFile = new File("res/Dolphins.png");
       image = ImageIO.read(imageFile);
     } catch (IOException e) {
-      e.prprintStackTrace();
+      e.printStackTrace();
     }
 
     Controller.testPixelCount(image);
