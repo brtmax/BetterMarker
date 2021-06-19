@@ -77,10 +77,11 @@ public static Class Controller {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
 
-                //Checks what is asked for, i.e. highest or lowest value
-                if (position.equals("Min") && y < lowestY && ) {
+                //Depending on the defined case (min or max), we set the y-Value to
+                //the new highest/lowest value, if it not white.
+                if (position.equals("Min") && (y < lowestY) && !isColorWhite(x, y, toReturn)) {
                     lowestY = y;
-                } else if (position.equals("Max") && y > highestY) {
+                } else if (position.equals("Max") && (y > highestY) && !isColorWhite(x, y, toReturn)) {
                     highestY = y;
                 }
             }
@@ -105,7 +106,7 @@ public static Class Controller {
     * @param ScreenImage image, image that is passed.
     */
     public boolean isColorWhite(int x, int y, ScreenImage image) {
-        
+
         Color color = new Color (image.getColor(x, y));
         return (color == Color.WHITE);
     }
