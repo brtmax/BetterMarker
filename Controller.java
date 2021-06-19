@@ -1,3 +1,6 @@
+import java.awt.Color;
+import java.awt.ScreenImage;
+import java.awt.BufferedImage;
 /*
 * This is the controller class of the BetterMarker program
 * It handles all calculations and util methods.
@@ -91,4 +94,11 @@ public static Class Controller {
         }
     }
 
+
+        public boolean isColorWhite(int x, int y, ScreenImage image) {
+            Color white = new Color();
+            Color color = new Color (image.getColor(x, y));
+            ScreenImage.
+            return
+        }
 }
