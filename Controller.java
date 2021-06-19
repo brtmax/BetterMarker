@@ -95,10 +95,18 @@ public static Class Controller {
     }
 
 
-        public boolean isColorWhite(int x, int y, ScreenImage image) {
-            Color white = new Color();
-            Color color = new Color (image.getColor(x, y));
-            ScreenImage.
-            return
-        }
+    /**
+    * This method compares the color of the given coordinate on the image
+    * to the white color, and returns true if it is white and false if it's
+    * anything else. That way we don't need to define a color distance, at least
+    * for black and white images.
+    * @param int x, x-Coordinate on the image
+    * @param int y, y-Coordiante on the image
+    * @param ScreenImage image, image that is passed.
+    */
+    public boolean isColorWhite(int x, int y, ScreenImage image) {
+        
+        Color color = new Color (image.getColor(x, y));
+        return (color == Color.WHITE);
+    }
 }
