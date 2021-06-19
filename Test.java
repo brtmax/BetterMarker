@@ -7,15 +7,18 @@ public class Test {
 
   public static void main(String[] args) {
 
+    // Create an empty BufferedImage instance
     BufferedImage image = null;
 
     try {
+      // Reads Dolphin png into a new file
       File imageFile = new File("res/Dolphins.png");
+      // assigns new BufferedImage from Dolphin file to image
       image = ImageIO.read(imageFile);
     } catch (IOException e) {
       e.printStackTrace();
     }
-
+    // Calls testPixelCount method in Controller
     Controller.testPixelCount(image);
   }
 }
