@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import BetterMarker;
 /*
 * This is the controller class of the BetterMarker program
 * It handles all calculations and util methods.
