@@ -163,4 +163,23 @@ public static Class Controller {
         //i and the line is about 10px in an image that is 1200px high
         return y + (image.getHeight() / 100);
     }
+
+    /**
+    * This method calculates the halfway point between the lower and
+    * the upper y-coordinates.
+    * @param int upper, highest qualifying y-value.
+    * @param int lower, lowest qualifying y-value.
+    * @return int, halfway point between these two values
+    */
+    public int calculateHalfpoint(int lower, int upper) {
+
+        int difference = upper - lower;
+        if (difference == 0) {
+            //TODO, ERROR
+            return;
+        }
+            half = difference / 2;
+
+        return lower + difference;
+    }
 }
