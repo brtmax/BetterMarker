@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
-import BetterMarker;
+
 /*
 * This is the controller class of the BetterMarker program
 * It handles all calculations and util methods.
@@ -149,5 +149,18 @@ public static Class Controller {
         }
         System.out.println("Pixel count white: " + pixelWhite + ".");
         System.out.println("Pixel count non-white: " + pixelNonWhite + ".");
+    }
+
+    /**
+    * This method increases the y-value based on the images height.
+    * @param int y, y-coordinate
+    * @param BufferedImage image, !background! image, not the rectangle that
+    * the user chose but the whole image.
+    * @return int, increased y-value
+    */
+    public int increaseYValue(int y, BufferdImage image) {
+        //100 is a test value, the distance between the point of an
+        //i and the line is about 10px in an image that is 1200px high
+        return y + (image.getHeight() / 100);
     }
 }
