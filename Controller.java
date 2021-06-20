@@ -100,6 +100,8 @@ public static Class Controller {
         //This increases the search-area
         UPPER_LEFT_INCREASED = getIncreasedYValue(UPPER_LEFT_OLD.y(), image);
         LOWER_LEFT_INCREASED = getIncreasedYValue(LOWER_LEFT_OLD.y(), image);
+        UPPER_RIGHT_INCREASED = getIncreasedYValue(UPPER_RIGHT_OLD.y(), image);
+        LOWER_RIGHT_INCREASED = getIncreasedYValue(LOWER_RIGHT_OLD.y(), image);
 
         //Loop over the image pixel by pixel
         // x-coordinate is left as is
@@ -221,5 +223,17 @@ public static Class Controller {
         LOWER_RIGHT_FITTED.setLocation(LOWER_RIGHT_OLD, lower)
         UPPER_LEFT_FITTED.setLocation(UPPER_LEFT_OLD, upper);
         UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD, upper);
+    }
+
+    /**
+    * This method takes the updated rectangles coordinates, loops over import junit.framework.TestCase;
+    * and highlights the are in (currently only) neon yellow.
+    */
+    public void highlightRectangle() {
+
+        for (int x = UPPER_LEFT_FITTED.x(); x < UPPER_RIGHT_FITTED; y++) {
+            for (int y = UPPER_LEFT_FITTED; y < LOWER_LEFT_FITTED; x++) {
+                //Black for testing, will be changed later
+                image.setColor(COLOR.BLACK);
     }
 }
