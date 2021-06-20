@@ -33,6 +33,9 @@ public static Class Controller {
     public static int finalYUpper;
     public static int finalYLower;
 
+    public static int highestNonWhite;
+    public static int lowestNonWhite;
+
     public static ScreenImage image;
     public static BufferdImage background;
 
@@ -49,10 +52,13 @@ public static Class Controller {
         LOWER_RIGHT_OLD =
         */
 
+        //Increases the y-values, basically enlarging the search area
         LOWER_LEFT_INCREASED = setLocation(LOWER_LEFT_OLD.x(), getIncreasedYValue(LOWER_LEFT_OLD.y(), image));
         LOWER_RIGHT_INCREASED = setLocation(LOWER_RIGHT_OLD.x(), getIncreasedYValue(LOWER_RIGHT_OLD.y(), image));
         UPPER_LEFT_INCREASED = setLocation(UPPER_LEFT_OLD.x(), getIncreasedYValue(UPPER_LEFT_OLD.y(), image));
         UPPER_RIGHT_INCREASED = setLocation(UPPER_RIGHT_OLD.x(), getIncreasedYValue(UPPER_RIGHT_OLD.y(), image));
+
+        lowestNonWhite = get
 
     }
 
@@ -107,8 +113,8 @@ public static Class Controller {
     public void setYCoordinate(ScreenImage image, String position) {
 
         //Initialize default highest and lowest values
-        int highestY = 0;
-        int lowestY = 100000;
+        highestNonWhite = 0;
+        lowestNonWhite = 100000;
 
         //Create a copy of the image to work on
         ScreenImage toReturn = image.copy();
@@ -128,13 +134,6 @@ public static Class Controller {
                     highestY = y;
                 }
             }
-        }
-
-        //Returns the specified value
-        if (position.equals("Min")) {
-            finalYLower = lowestY;
-        } else {
-            finalYUpper = highestY;
         }
     }
 
