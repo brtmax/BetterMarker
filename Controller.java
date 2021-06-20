@@ -15,6 +15,15 @@ import java.io.IOException;
 
 public static Class Controller {
 
+    public static point LOWER_LEFT_OLD;
+    public static point LOWER_RIGHT_OLD;
+    public static point UPPER_LEFT_OLD;
+    public static point UPPER_RIGHT_OLD;
+
+    public static point LOWER_LEFT_FITTED;
+    public static point LOWER_RIGHT_FITTED;
+    public static point UPPER_LEFT_FITTED;
+    public static point UPPER_RIGHT_FITTED;
 
     /**
     * This method converts a screenImage instance to a BufferedImage instance
@@ -181,5 +190,15 @@ public static Class Controller {
             half = difference / 2;
 
         return lower + difference;
+    }
+
+    public void fitRectangle() {
+        int heightRectangle = UPPER_LEFT.y() - LOWER_LEFT.y();
+        int heighToBeAdded = heightRectangle / 2;
+
+        int halfwaypoint = calculateHalfpoint(UPPER_LEFT.y(), LOWER_LEFT.y());
+        
+
+
     }
 }
