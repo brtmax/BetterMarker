@@ -208,7 +208,7 @@ public static Class Controller {
             return lower + difference;
     }
 
-    public void createfittedRectangle() {
+    public void createFittedRectangle() {
         int heightRectangle = UPPER_LEFT.y() - LOWER_LEFT.y();
         int heighToBeAdded = heightRectangle / 2;
 
