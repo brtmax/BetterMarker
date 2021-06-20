@@ -34,6 +34,27 @@ public static Class Controller {
     public static int finalYLower;
 
     public static ScreenImage image;
+    public static BufferdImage background;
+
+    public static highlight(ScreenImage i) {
+
+        background = convertScreenImageToBufferedImage(i);
+
+        //TODO
+        //Set old values to the rectangle entered by the user
+        /*
+        UPPER_LEFT_OLD =
+        UPPER_RIGHT_OLD =
+        LOWER_LEFT_OLD =
+        LOWER_RIGHT_OLD =
+        */
+
+        LOWER_LEFT_INCREASED = setLocation(LOWER_LEFT_OLD.x(), getIncreasedYValue(LOWER_LEFT_OLD.y(), image));
+        LOWER_RIGHT_INCREASED = setLocation(LOWER_RIGHT_OLD.x(), getIncreasedYValue(LOWER_RIGHT_OLD.y(), image));
+        UPPER_LEFT_INCREASED = setLocation(UPPER_LEFT_OLD.x(), getIncreasedYValue(UPPER_LEFT_OLD.y(), image));
+        UPPER_RIGHT_INCREASED = setLocation(UPPER_RIGHT_OLD.x(), getIncreasedYValue(UPPER_RIGHT_OLD.y(), image));
+
+    }
 
     /**
     * This method converts a screenImage instance to a BufferedImage instance
@@ -92,16 +113,6 @@ public static Class Controller {
         //Create a copy of the image to work on
         ScreenImage toReturn = image.copy();
 
-        //Get height and width of the image
-        int height = toReturn.getHeight();
-        int width = toReturn.getWidth();
-
-        //Passes the user given upper and lower left y-coordinates to the method, which adds a few pixels height to them
-        //This increases the search-area
-        UPPER_LEFT_INCREASED = getIncreasedYValue(UPPER_LEFT_OLD.y(), image);
-        LOWER_LEFT_INCREASED = getIncreasedYValue(LOWER_LEFT_OLD.y(), image);
-        UPPER_RIGHT_INCREASED = getIncreasedYValue(UPPER_RIGHT_OLD.y(), image);
-        LOWER_RIGHT_INCREASED = getIncreasedYValue(LOWER_RIGHT_OLD.y(), image);
 
         //Loop over the image pixel by pixel
         // x-coordinate is left as is
