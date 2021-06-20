@@ -30,14 +30,19 @@ public static Class Controller {
     public static point UPPER_LEFT_INCREASED;
     public static point UPPER_RIGHT_INCREASED;
 
-    public static int finalYUpper;
-    public static int finalYLower;
+    public static int highlightRectangleUpperY;
+    public static int hightlightRectangleLowerY;
+
+    public static int textRectangleUpperY;
+    public static int textRectangleLowerY;
 
     public static int highestNonWhite;
     public static int lowestNonWhite;
 
     public static ScreenImage image;
     public static BufferdImage background;
+
+    public static int highlightedRectangleHeight;
 
     public static highlight(ScreenImage i) {
 
@@ -58,7 +63,10 @@ public static Class Controller {
         UPPER_LEFT_INCREASED = setLocation(UPPER_LEFT_OLD.x(), getIncreasedYValue(UPPER_LEFT_OLD.y(), image));
         UPPER_RIGHT_INCREASED = setLocation(UPPER_RIGHT_OLD.x(), getIncreasedYValue(UPPER_RIGHT_OLD.y(), image));
 
-        lowestNonWhite = get
+        setYCoordinate(background, "Min");
+        setYCoordinate(background, "Max");
+
+        calculateHalfpoint(textRectangleLowerY, textRectangleUpperY);
 
     }
 
@@ -113,8 +121,8 @@ public static Class Controller {
     public void setYCoordinate(ScreenImage image, String position) {
 
         //Initialize default highest and lowest values
-        highestNonWhite = 0;
-        lowestNonWhite = 100000;
+        textRectangleUpperY = 0;
+        textRectangleLowerY = 100000;
 
         //Create a copy of the image to work on
         ScreenImage toReturn = image.copy();
@@ -128,10 +136,10 @@ public static Class Controller {
 
                 //Depending on the defined case (min or max), we set the y-Value to
                 //the new highest/lowest value, if it not white.
-                if (position.equals("Min") && (y < lowestY) && !isColorWhite(x, y, toReturn)) {
-                    lowestY = y;
-                } else if (position.equals("Max") && (y > highestY) && !isColorWhite(x, y, toReturn)) {
-                    highestY = y;
+                if (position.equals("Min") && (y < textRectangleLowerY) && !isColorWhite(x, y, toReturn)) {
+                    textRectangleLowerY = y;
+                } else if (position.equals("Max") && (y > textRectangleUpperY) && !isColorWhite(x, y, toReturn)) {
+                    textRectangleUpperY = y;
                 }
             }
         }
@@ -209,15 +217,15 @@ public static Class Controller {
     * @param int lower, lowest qualifying y-value.
     * @return int, halfway point between these two values
     */
-    public int calculateHalfpoint(int lower, int upper) {
+    public void calculateHalfpoint(int lower, int upper) {
 
         int difference = upper - lower;
         if (difference == 0) {
             //TODO, ERROR
             return;
         }
-            half = difference / 2;
-            return lower + difference;
+
+            halfwayPoint = lower + (difference / 2);
     }
 
     public void createFittedRectangle() {
