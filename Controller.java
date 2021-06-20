@@ -63,10 +63,23 @@ public static Class Controller {
         UPPER_LEFT_INCREASED = setLocation(UPPER_LEFT_OLD.x(), getIncreasedYValue(UPPER_LEFT_OLD.y(), image));
         UPPER_RIGHT_INCREASED = setLocation(UPPER_RIGHT_OLD.x(), getIncreasedYValue(UPPER_RIGHT_OLD.y(), image));
 
-        setYCoordinate(background, "Min");
-        setYCoordinate(background, "Max");
+        //Sets highest and lowest text pixel y-Value
+        setTextRectangleYCoordinate(background, "Min");
+        setTextRectangleYCoordinate(background, "Max");
 
+        //Calculates the halfway point right between the top of the letters and the bottom
         calculateHalfpoint(textRectangleLowerY, textRectangleUpperY);
+
+        //Calcualtes height of actual drawn rectangle, usually a fixed height in most applications
+        highlightedRectangleHeight = LOWER_LEFT_OLD.y() - UPPER_LEFT_OLD.y();
+
+        //Sets final highlighted rectangle corner coordinates
+        UPPER_LEFT_FITTED = setLocation(UPPER_LEFT_OLD.x(), halfwayPoint - highlightedRectangleHeight);
+        LOWER_LEFT_FITTED = setLocation(LOWER_LEFT_OLD.x(), halfwayPoint + highlightedRectangleHeight);
+        UPPER_RIGHT_FITTED = setLocation(UPPER_RIGHT_OLD.x(), halfwayPoint - highlightedRectangleHeight);
+        LOWER_RIGHT_FITTED = setLocation(LOWER_RIGHT_OLD.x(), halfwayPoint + highlightedRectangleHeight);
+
+        highlightRectangle();
 
     }
 
@@ -118,7 +131,7 @@ public static Class Controller {
     * It does it by looping over the image and returning the highest or lowestY
     * value that is not white.
     */
-    public void setYCoordinate(ScreenImage image, String position) {
+    public void setTextRectangleYCoordinate(ScreenImage image, String position) {
 
         //Initialize default highest and lowest values
         textRectangleUpperY = 0;
