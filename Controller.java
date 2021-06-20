@@ -25,6 +25,11 @@ public static Class Controller {
     public static point UPPER_LEFT_FITTED;
     public static point UPPER_RIGHT_FITTED;
 
+    public static point LOWER_LEFT_INCREASED;
+    public static point LOWER_RIGHT_INCREASED;
+    public static point UPPER_LEFT_INCREASED;
+    public static point UPPER_RIGHT_INCREASED;
+
     public static int finalYUpper;
     public static int finalYLower;
 
@@ -93,14 +98,14 @@ public static Class Controller {
 
         //Passes the user given upper and lower left y-coordinates to the method, which adds a few pixels height to them
         //This increases the search-area
-        UPPER_LEFT_FITTED = getIncreasedYValue(UPPER_LEFT_OLD.y(), image);
-        LOWER_LEFT_FITTED = getIncreasedYValue(LOWER_LEFT_OLD.y(), image);
+        UPPER_LEFT_INCREASED = getIncreasedYValue(UPPER_LEFT_OLD.y(), image);
+        LOWER_LEFT_INCREASED = getIncreasedYValue(LOWER_LEFT_OLD.y(), image);
 
         //Loop over the image pixel by pixel
         // x-coordinate is left as is
         // y-coordinate is "fitted", there are a few pixels added to it.
         for (int x = UPPER_LEFT_OLD.x(); x < UPPER_RIGHT_OLD; y++) {
-            for (int y = UPPER_LEFT_FITTED; y < LOWER_LEFT_FITTED; x++) {
+            for (int y = UPPER_LEFT_INCREASED; y < LOWER_LEFT_INCREASED; x++) {
 
                 //Depending on the defined case (min or max), we set the y-Value to
                 //the new highest/lowest value, if it not white.
@@ -203,7 +208,7 @@ public static Class Controller {
             return lower + difference;
     }
 
-    public void fitRectangle() {
+    public void createfittedRectangle() {
         int heightRectangle = UPPER_LEFT.y() - LOWER_LEFT.y();
         int heighToBeAdded = heightRectangle / 2;
 
@@ -212,6 +217,9 @@ public static Class Controller {
         int upper = getYCoordinate(image, "Max");
         int lower = getYCoordinate(image, "Min");
 
-
+        LOWER_LEFT_FITTED.setLocation(LOWER_LEFT_OLD.x(), lower);
+        LOWER_RIGHT_FITTED.setLocation(LOWER_RIGHT_OLD, lower)
+        UPPER_LEFT_FITTED.setLocation(UPPER_LEFT_OLD, upper);
+        UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD, upper);
     }
 }
