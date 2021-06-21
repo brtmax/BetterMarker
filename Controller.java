@@ -278,9 +278,9 @@ public Class Controller {
     */
     public void highlightRectangle() {
 
-        for (int x = UPPER_LEFT_FITTED.x(); x < UPPER_RIGHT_FITTED; y++) {
-            for (int y = UPPER_LEFT_FITTED; y < LOWER_LEFT_FITTED; x++) {
+        for (int x = UPPER_LEFT_FITTED.getX(); x < UPPER_RIGHT_FITTED.getX(); x++) {
+            for (int y = UPPER_LEFT_FITTED.getY(); y < LOWER_LEFT_FITTED.getY(); y++) {
                 //Black for testing, will be changed later
-                image.setColor(COLOR.BLACK);
+                image.setColor(x, y, COLOR.BLACK);
     }
 }
