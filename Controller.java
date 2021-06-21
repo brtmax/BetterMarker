@@ -233,7 +233,7 @@ public Class Controller {
     * the user chose but the whole image.
     * @return int, increased y-value
     */
-    public int getIncreaseYValue(int y, BufferdImage image) {
+    public int getIncreasedYValue(int y, BufferdImage image) {
         //100 is a test value, the distance between the point of an
         //i and the line is about 10px in an image that is 1200px high
         return y + (image.getHeight() / 100);
@@ -258,18 +258,18 @@ public Class Controller {
     }
 
     public void createFittedRectangle() {
-        int heightRectangle = UPPER_LEFT.y() - LOWER_LEFT.y();
+        int heightRectangle = UPPER_LEFT_OLD.getY() - LOWER_LEFT_OLD.getY();
         int heighToBeAdded = heightRectangle / 2;
 
-        int halfwaypoint = calculateHalfpoint(UPPER_LEFT.y(), LOWER_LEFT.y());
+        int halfwaypoint = calculateHalfpoint(textRectangleUpperY, textRectangleLowerY);
 
         int upper = getYCoordinate(image, "Max");
         int lower = getYCoordinate(image, "Min");
 
-        LOWER_LEFT_FITTED.setLocation(LOWER_LEFT_OLD.x(), lower);
-        LOWER_RIGHT_FITTED.setLocation(LOWER_RIGHT_OLD, lower)
-        UPPER_LEFT_FITTED.setLocation(UPPER_LEFT_OLD, upper);
-        UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD, upper);
+        LOWER_LEFT_FITTED.setLocation(LOWER_LEFT_OLD.getX(), lower);
+        LOWER_RIGHT_FITTED.setLocation(LOWER_RIGHT_OLD.getX(), lower)
+        UPPER_LEFT_FITTED.setLocation(UPPER_LEFT_OLD.getX(), upper);
+        UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD.getX(), upper);
     }
 
     /**
