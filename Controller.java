@@ -70,7 +70,7 @@ public Class Controller {
         setTextRectangleYCoordinate(background, "Max");
 
         //Calculates the halfway point right between the top of the letters and the bottom
-        calculateHalfpoint(textRectangleLowerY, textRectangleUpperY);
+        calculateMiddle(textRectangleLowerY, textRectangleUpperY);
 
         //Calcualtes height of actual drawn rectangle, usually a fixed height in most applications
         highlightedRectangleHeight = (int) (LOWER_LEFT_OLD.getY() - UPPER_LEFT_OLD.getY());
@@ -81,8 +81,7 @@ public Class Controller {
         UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD.getX(), halfwayPoint - highlightedRectangleHeight);
         LOWER_RIGHT_FITTED.etLocation(LOWER_RIGHT_OLD.getX(), halfwayPoint + highlightedRectangleHeight);
 
-        //TODO
-        // highlightRectangle();
+        highlightRectangle();
     }
 
     /**
@@ -164,7 +163,7 @@ public Class Controller {
             for (int y = UPPER_LEFT_INCREASED.getY(); y < LOWER_LEFT_INCREASED.getY(); y++) {
 
                 //Depending on the defined case (min or max), we set the y-Value to
-                //the new highest/lowest value, if it not white.
+                //the new highest/lowest value, if it is not white.
                 if (position.equals("Min") && (y < textRectangleLowerY) && !isColorWhite(x, y, toReturn)) {
                     textRectangleLowerY = y;
                 } else if (position.equals("Max") && (y > textRectangleUpperY) && !isColorWhite(x, y, toReturn)) {
@@ -246,7 +245,7 @@ public Class Controller {
     * @param int lower, lowest qualifying y-value.
     * @return int, halfway point between these two values
     */
-    public void calculateHalfpoint(int lower, int upper) {
+    public void calculateMiddle(int lower, int upper) {
 
         int difference = upper - lower;
         if (difference == 0) {
@@ -276,7 +275,7 @@ public Class Controller {
     * This method takes the updated rectangles coordinates, loops over import junit.framework.TestCase;
     * and highlights the are in (currently only) neon yellow.
     */
-    public void highlightRectangle() {
+    public static void highlightRectangle() {
 
         for (int x = UPPER_LEFT_FITTED.getX(); x < UPPER_RIGHT_FITTED.getX(); x++) {
             for (int y = UPPER_LEFT_FITTED.getY(); y < LOWER_LEFT_FITTED.getY(); y++) {
