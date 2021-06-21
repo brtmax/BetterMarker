@@ -13,7 +13,7 @@ import java.io.IOException;
 * @version 0.0.1-SNAPSHOT
 */
 
-public static Class Controller {
+public Class Controller {
 
     public static point LOWER_LEFT_OLD;
     public static point LOWER_RIGHT_OLD;
@@ -44,6 +44,8 @@ public static Class Controller {
 
     public static int highlightedRectangleHeight;
 
+    public static int halfwayPoint;
+
     public static highlight(ScreenImage i) {
 
         background = convertScreenImageToBufferedImage(i);
@@ -58,10 +60,10 @@ public static Class Controller {
         */
 
         //Increases the y-values, basically enlarging the search area
-        LOWER_LEFT_INCREASED = setLocation(LOWER_LEFT_OLD.x(), getIncreasedYValue(LOWER_LEFT_OLD.y(), image));
-        LOWER_RIGHT_INCREASED = setLocation(LOWER_RIGHT_OLD.x(), getIncreasedYValue(LOWER_RIGHT_OLD.y(), image));
-        UPPER_LEFT_INCREASED = setLocation(UPPER_LEFT_OLD.x(), getIncreasedYValue(UPPER_LEFT_OLD.y(), image));
-        UPPER_RIGHT_INCREASED = setLocation(UPPER_RIGHT_OLD.x(), getIncreasedYValue(UPPER_RIGHT_OLD.y(), image));
+        LOWER_LEFT_INCREASED.setLocation(LOWER_LEFT_OLD.getX(), getIncreasedYValue((int)LOWER_LEFT_OLD.getY(), background));
+        LOWER_RIGHT_INCREASED = setLocation(LOWER_RIGHT_OLD.getX(), getIncreasedYValue(LOWER_RIGHT_OLD.getY(), background));
+        UPPER_LEFT_INCREASED = setLocation(UPPER_LEFT_OLD.getX(), getIncreasedYValue(UPPER_LEFT_OLD.getY(), background));
+        UPPER_RIGHT_INCREASED = setLocation(UPPER_RIGHT_OLD.getX(), getIncreasedYValue(UPPER_RIGHT_OLD.getY(), background));
 
         //Sets highest and lowest text pixel y-Value
         setTextRectangleYCoordinate(background, "Min");
@@ -71,15 +73,16 @@ public static Class Controller {
         calculateHalfpoint(textRectangleLowerY, textRectangleUpperY);
 
         //Calcualtes height of actual drawn rectangle, usually a fixed height in most applications
-        highlightedRectangleHeight = LOWER_LEFT_OLD.y() - UPPER_LEFT_OLD.y();
+        highlightedRectangleHeight = (int) (LOWER_LEFT_OLD.getY() - UPPER_LEFT_OLD.getY());
 
         //Sets final highlighted rectangle corner coordinates
-        UPPER_LEFT_FITTED = setLocation(UPPER_LEFT_OLD.x(), halfwayPoint - highlightedRectangleHeight);
-        LOWER_LEFT_FITTED = setLocation(LOWER_LEFT_OLD.x(), halfwayPoint + highlightedRectangleHeight);
-        UPPER_RIGHT_FITTED = setLocation(UPPER_RIGHT_OLD.x(), halfwayPoint - highlightedRectangleHeight);
-        LOWER_RIGHT_FITTED = setLocation(LOWER_RIGHT_OLD.x(), halfwayPoint + highlightedRectangleHeight);
+        UPPER_LEFT_FITTED.setLocation(UPPER_LEFT_OLD.getX(), halfwayPoint - highlightedRectangleHeight);
+        LOWER_LEFT_FITTED.setLocation(LOWER_LEFT_OLD.getX(), halfwayPoint + highlightedRectangleHeight);
+        UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD.getX(), halfwayPoint - highlightedRectangleHeight);
+        LOWER_RIGHT_FITTED.etLocation(LOWER_RIGHT_OLD.getX(), halfwayPoint + highlightedRectangleHeight);
 
-        highlightRectangle();
+        //TODO
+        // highlightRectangle();
 
     }
 
