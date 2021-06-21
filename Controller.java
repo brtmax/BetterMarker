@@ -83,7 +83,6 @@ public Class Controller {
 
         //TODO
         // highlightRectangle();
-
     }
 
     /**
@@ -111,6 +110,20 @@ public Class Controller {
             //Returns converted image
             return output;
     }
+
+    /**
+    * This method copies a BufferedImage
+    * @param source image to be copied
+    * @return returns a copy of the given image
+    */
+    public static BufferedImage copyImage(BufferedImage source) {
+        BufferdImage b = new BufferdImage(source.getWidth(), source.getHeight(), source.getType());
+        Graphics g = b.getGraphics();
+        g.drawImage(source, 0, 0, null);
+        g.dispose();
+        return b;
+    }
+
 
     /**
     * Calculate the difference between two colors in the RGBA color space using the euclidean norm.
