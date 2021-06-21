@@ -160,8 +160,8 @@ public Class Controller {
         //Loop over the image pixel by pixel
         // x-coordinate is left as is
         // y-coordinate is "fitted", there are a few pixels added to it.
-        for (int x = UPPER_LEFT_OLD.x(); x < UPPER_RIGHT_OLD; y++) {
-            for (int y = UPPER_LEFT_INCREASED; y < LOWER_LEFT_INCREASED; x++) {
+        for (int x = UPPER_LEFT_OLD.getX(); x < UPPER_RIGHT_OLD; x++) {
+            for (int y = UPPER_LEFT_INCREASED.getY(); y < LOWER_LEFT_INCREASED.getY(); y++) {
 
                 //Depending on the defined case (min or max), we set the y-Value to
                 //the new highest/lowest value, if it not white.
