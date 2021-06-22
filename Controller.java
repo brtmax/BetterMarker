@@ -15,16 +15,19 @@ import java.io.IOException;
 
 public Class Controller {
 
+    //OLD == USER GIVEN
     public static point LOWER_LEFT_OLD;
     public static point LOWER_RIGHT_OLD;
     public static point UPPER_LEFT_OLD;
     public static point UPPER_RIGHT_OLD;
 
+    //FITTED RECTANGLE TO BE DRAWN
     public static point LOWER_LEFT_FITTED;
     public static point LOWER_RIGHT_FITTED;
     public static point UPPER_LEFT_FITTED;
     public static point UPPER_RIGHT_FITTED;
 
+    //INCREASED == LARGER SEARCH AREA
     public static point LOWER_LEFT_INCREASED;
     public static point LOWER_RIGHT_INCREASED;
     public static point UPPER_LEFT_INCREASED;
@@ -44,7 +47,7 @@ public Class Controller {
 
     public static int highlightedRectangleHeight;
 
-    public static int halfwayPoint;
+    public static int middle;
 
     public static highlight(ScreenImage i) {
 
@@ -82,6 +85,19 @@ public Class Controller {
         LOWER_RIGHT_FITTED.etLocation(LOWER_RIGHT_OLD.getX(), halfwayPoint + highlightedRectangleHeight);
 
         highlightRectangle();
+    }
+
+    /**
+    * This method is currently just for testing. DynamicFitting searches above and below
+    * the middle point of the user-given rectangle and stops when it finds an all-white line.
+    * This way we can fit the rectangle more accurately.
+    *
+    */
+    public static dynamicFitting() {
+        //Given the user input rectangle, we can calculate the middle point of it.
+        calculateMiddle(UPPER_LEFT_OLD.getY(), LOWER_LEFT_OLD.getY());
+
+        //TODO
     }
 
     /**
