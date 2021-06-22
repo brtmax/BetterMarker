@@ -30,14 +30,8 @@ public class Controller {
     public static Point UPPER_LEFT_INCREASED;
     public static Point UPPER_RIGHT_INCREASED;
 
-    public static int highlightRectangleUpperY;
-    public static int hightlightRectangleLowerY;
-
     public static int textRectangleUpperY;
     public static int textRectangleLowerY;
-
-    public static int highestNonWhite;
-    public static int lowestNonWhite;
 
     public static ScreenImage image;
     public static BufferedImage background;
@@ -164,7 +158,7 @@ public class Controller {
 
         //Initialize default highest and lowest values
         textRectangleUpperY = 0;
-        textRectangleLowerY = 100000;
+        textRectangleLowerY = Integer.MAX_VALUE;
 
         //Loop over the image pixel by pixel
         // x-coordinate is left as is
@@ -191,7 +185,7 @@ public class Controller {
      * for black and white images.
      *
      * @param x,     x-Coordinate on the image
-     * @param y,     y-Coordiante on the image
+     * @param y,     y-Coordinate on the image
      * @param image, image that is passed.
      */
     public static boolean isColorWhite(int x, int y, BufferedImage image) {
