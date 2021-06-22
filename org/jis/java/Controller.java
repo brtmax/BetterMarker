@@ -160,15 +160,11 @@ public class Controller {
      * It does it by looping over the image and returning the highest or lowestY
      * value that is not white.
      */
-    public static void setTextRectangleYCoordinate(ScreenImage image, String position) {
+    public static void setTextRectangleYCoordinate(BufferedImage image, String position) {
 
         //Initialize default highest and lowest values
         textRectangleUpperY = 0;
         textRectangleLowerY = 100000;
-
-        //Create a copy of the image to work on
-        ScreenImage toReturn = image.copy();
-
 
         //Loop over the image pixel by pixel
         // x-coordinate is left as is
@@ -178,9 +174,9 @@ public class Controller {
 
                 //Depending on the defined case (min or max), we set the y-Value to
                 //the new highest/lowest value, if it is not white.
-                if (position.equals("Min") && (y < textRectangleLowerY) && !isColorWhite(x, y, toReturn)) {
+                if (position.equals("Min") && (y < textRectangleLowerY) && !isColorWhite(x, y, image)) {
                     textRectangleLowerY = y;
-                } else if (position.equals("Max") && (y > textRectangleUpperY) && !isColorWhite(x, y, toReturn)) {
+                } else if (position.equals("Max") && (y > textRectangleUpperY) && !isColorWhite(x, y, image)) {
                     textRectangleUpperY = y;
                 }
             }
@@ -198,10 +194,10 @@ public class Controller {
      * @param y,     y-Coordiante on the image
      * @param image, image that is passed.
      */
-    public static boolean isColorWhite(int x, int y, ScreenImage image) {
+    public static boolean isColorWhite(int x, int y, BufferedImage image) {
 
-        Color color = new Color(image.getColor(x, y));
-        return (color == Color.WHITE);
+        Color color = new Color(image.getRGB(x, y));
+        return (color.equals(Color.WHITE));
     }
 
     /**
@@ -216,11 +212,9 @@ public class Controller {
         int pixelWhite = 0;
         int pixelNonWhite = 0;
 
-        ScreenImage toReturn = i.copy();
-
         //Get height and width of the image
-        int height = toReturn.getHeight();
-        int width = toReturn.getWidth();
+        int height = image.getHeight();
+        int width = image.getWidth();
 
         //Loop over the image pixel by pixel
         for (int y = 0; y < height; y++) {
@@ -228,9 +222,9 @@ public class Controller {
 
                 //Depending on the defined case (min or max), we set the y-Value to
                 //the new highest/lowest value, if it not white.
-                if (!isColorWhite(x, y, toReturn)) {
+                if (!isColorWhite(x, y, image)) {
                     pixelNonWhite++;
-                } else if (isColorWhite(x, y, toReturn)) {
+                } else if (isColorWhite(x, y, image)) {
                     pixelWhite++;
                 }
             }
