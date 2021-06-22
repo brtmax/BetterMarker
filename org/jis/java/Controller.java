@@ -33,7 +33,7 @@ public class Controller {
     public static int textRectangleUpperY;
     public static int textRectangleLowerY;
 
-    public static ScreenImage image;
+    public static BufferedImage image;
     public static BufferedImage background;
 
     public static int highlightedRectangleHeight;
@@ -70,10 +70,10 @@ public class Controller {
         highlightedRectangleHeight = (int) (LOWER_LEFT_OLD.getY() - UPPER_LEFT_OLD.getY());
 
         //Sets final highlighted rectangle corner coordinates
-        UPPER_LEFT_FITTED.setLocation(UPPER_LEFT_OLD.getX(), middle - highlightedRectangleHeight);
-        LOWER_LEFT_FITTED.setLocation(LOWER_LEFT_OLD.getX(), middle + highlightedRectangleHeight);
-        UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD.getX(), middle - highlightedRectangleHeight);
-        LOWER_RIGHT_FITTED.setLocation(LOWER_RIGHT_OLD.getX(), middle + highlightedRectangleHeight);
+        UPPER_LEFT_FITTED.setLocation(UPPER_LEFT_OLD.getX(), middle - highlightedRectangleHeight / 2);
+        LOWER_LEFT_FITTED.setLocation(LOWER_LEFT_OLD.getX(), middle + highlightedRectangleHeight / 2);
+        UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD.getX(), middle - highlightedRectangleHeight / 2);
+        LOWER_RIGHT_FITTED.setLocation(LOWER_RIGHT_OLD.getX(), middle + highlightedRectangleHeight / 2);
 
         highlightRectangle();
     }
@@ -249,7 +249,7 @@ public class Controller {
         for (int x = (int) UPPER_LEFT_FITTED.getX(); x < UPPER_RIGHT_FITTED.getX(); x++) {
             for (int y = (int) UPPER_LEFT_FITTED.getY(); y < LOWER_LEFT_FITTED.getY(); y++) {
                 //Black for testing, will be changed later
-                image.setColor(x, y, Color.BLACK.getRGB());
+                image.setRGB(x, y, Color.BLACK.getRGB());
             }
         }
     }
