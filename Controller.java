@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.awt.*;
 import java.awt.ScreenImage;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -13,25 +13,25 @@ import java.io.IOException;
 * @version 0.0.1-SNAPSHOT
 */
 
-public Class Controller {
+public class Controller {
 
     //OLD == USER GIVEN
-    public static point LOWER_LEFT_OLD;
-    public static point LOWER_RIGHT_OLD;
-    public static point UPPER_LEFT_OLD;
-    public static point UPPER_RIGHT_OLD;
+    public static Point LOWER_LEFT_OLD;
+    public static Point LOWER_RIGHT_OLD;
+    public static Point UPPER_LEFT_OLD;
+    public static Point UPPER_RIGHT_OLD;
 
     //FITTED RECTANGLE TO BE DRAWN
-    public static point LOWER_LEFT_FITTED;
-    public static point LOWER_RIGHT_FITTED;
-    public static point UPPER_LEFT_FITTED;
-    public static point UPPER_RIGHT_FITTED;
+    public static Point LOWER_LEFT_FITTED;
+    public static Point LOWER_RIGHT_FITTED;
+    public static Point UPPER_LEFT_FITTED;
+    public static Point UPPER_RIGHT_FITTED;
 
     //INCREASED == LARGER SEARCH AREA
-    public static point LOWER_LEFT_INCREASED;
-    public static point LOWER_RIGHT_INCREASED;
-    public static point UPPER_LEFT_INCREASED;
-    public static point UPPER_RIGHT_INCREASED;
+    public static Point LOWER_LEFT_INCREASED;
+    public static Point LOWER_RIGHT_INCREASED;
+    public static Point UPPER_LEFT_INCREASED;
+    public static Point UPPER_RIGHT_INCREASED;
 
     public static int highlightRectangleUpperY;
     public static int hightlightRectangleLowerY;
@@ -43,7 +43,7 @@ public Class Controller {
     public static int lowestNonWhite;
 
     public static ScreenImage image;
-    public static BufferdImage background;
+    public static BufferedImage background;
 
     public static int highlightedRectangleHeight;
 
@@ -64,9 +64,9 @@ public Class Controller {
 
         //Increases the y-values, basically enlarging the search area
         LOWER_LEFT_INCREASED.setLocation(LOWER_LEFT_OLD.getX(), getIncreasedYValue((int)LOWER_LEFT_OLD.getY(), background));
-        LOWER_RIGHT_INCREASED = setLocation(LOWER_RIGHT_OLD.getX(), getIncreasedYValue(LOWER_RIGHT_OLD.getY(), background));
-        UPPER_LEFT_INCREASED = setLocation(UPPER_LEFT_OLD.getX(), getIncreasedYValue(UPPER_LEFT_OLD.getY(), background));
-        UPPER_RIGHT_INCREASED = setLocation(UPPER_RIGHT_OLD.getX(), getIncreasedYValue(UPPER_RIGHT_OLD.getY(), background));
+        LOWER_RIGHT_INCREASED.setLocation(LOWER_RIGHT_OLD.getX(), getIncreasedYValue(LOWER_RIGHT_OLD.getY(), background));
+        UPPER_LEFT_INCREASED.setLocation(UPPER_LEFT_OLD.getX(), getIncreasedYValue(UPPER_LEFT_OLD.getY(), background));
+        UPPER_RIGHT_INCREASED.setLocation(UPPER_RIGHT_OLD.getX(), getIncreasedYValue(UPPER_RIGHT_OLD.getY(), background));
 
         //Sets highest and lowest text pixel y-Value
         setTextRectangleYCoordinate(background, "Min");
@@ -79,10 +79,10 @@ public Class Controller {
         highlightedRectangleHeight = (int) (LOWER_LEFT_OLD.getY() - UPPER_LEFT_OLD.getY());
 
         //Sets final highlighted rectangle corner coordinates
-        UPPER_LEFT_FITTED.setLocation(UPPER_LEFT_OLD.getX(), halfwayPoint - highlightedRectangleHeight);
-        LOWER_LEFT_FITTED.setLocation(LOWER_LEFT_OLD.getX(), halfwayPoint + highlightedRectangleHeight);
-        UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD.getX(), halfwayPoint - highlightedRectangleHeight);
-        LOWER_RIGHT_FITTED.etLocation(LOWER_RIGHT_OLD.getX(), halfwayPoint + highlightedRectangleHeight);
+        UPPER_LEFT_FITTED.setLocation(UPPER_LEFT_OLD.getX(), middle - highlightedRectangleHeight);
+        LOWER_LEFT_FITTED.setLocation(LOWER_LEFT_OLD.getX(), middle + highlightedRectangleHeight);
+        UPPER_RIGHT_FITTED.setLocation(UPPER_RIGHT_OLD.getX(), middle - highlightedRectangleHeight);
+        LOWER_RIGHT_FITTED.setLocation(LOWER_RIGHT_OLD.getX(), middle + highlightedRectangleHeight);
 
         highlightRectangle();
     }
@@ -162,7 +162,7 @@ public Class Controller {
     * It does it by looping over the image and returning the highest or lowestY
     * value that is not white.
     */
-    public void setTextRectangleYCoordinate(ScreenImage image, String position) {
+    public static void setTextRectangleYCoordinate(ScreenImage image, String position) {
 
         //Initialize default highest and lowest values
         textRectangleUpperY = 0;
@@ -175,8 +175,8 @@ public Class Controller {
         //Loop over the image pixel by pixel
         // x-coordinate is left as is
         // y-coordinate is "fitted", there are a few pixels added to it.
-        for (int x = UPPER_LEFT_OLD.getX(); x < UPPER_RIGHT_OLD; x++) {
-            for (int y = UPPER_LEFT_INCREASED.getY(); y < LOWER_LEFT_INCREASED.getY(); y++) {
+        for (int x = (int) UPPER_LEFT_OLD.getX(); x < UPPER_RIGHT_OLD.getX(); x++) {
+            for (int y = (int) UPPER_LEFT_INCREASED.getY(); y < LOWER_LEFT_INCREASED.getY(); y++) {
 
                 //Depending on the defined case (min or max), we set the y-Value to
                 //the new highest/lowest value, if it is not white.
@@ -195,11 +195,11 @@ public Class Controller {
     * to the white color, and returns true if it is white and false if it's
     * anything else. That way we don't need to define a color distance, at least
     * for black and white images.
-    * @param int x, x-Coordinate on the image
-    * @param int y, y-Coordiante on the image
-    * @param ScreenImage image, image that is passed.
+    * @param x, x-Coordinate on the image
+    * @param y, y-Coordiante on the image
+    * @param image, image that is passed.
     */
-    public boolean isColorWhite(int x, int y, ScreenImage image) {
+    public static boolean isColorWhite(int x, int y, ScreenImage image) {
 
         Color color = new Color (image.getColor(x, y));
         return (color == Color.WHITE);
@@ -243,12 +243,12 @@ public Class Controller {
 
     /**
     * This method increases the y-value based on the images height.
-    * @param int y, y-coordinate
-    * @param BufferedImage image, !background! image, not the rectangle that
+    * @param y, y-coordinate
+    * @param image, !background! image, not the rectangle that
     * the user chose but the whole image.
     * @return int, increased y-value
     */
-    public int getIncreasedYValue(int y, BufferdImage image) {
+    public int getIncreasedYValue(int y, BufferedImage image) {
         //100 is a test value, the distance between the point of an
         //i and the line is about 10px in an image that is 1200px high
         return y + (image.getHeight() / 100);
@@ -257,11 +257,11 @@ public Class Controller {
     /**
     * This method calculates the halfway point between the lower and
     * the upper y-coordinates.
-    * @param int upper, highest qualifying y-value.
-    * @param int lower, lowest qualifying y-value.
+    * @param upper, highest qualifying y-value.
+    * @param lower, lowest qualifying y-value.
     * @return int, halfway point between these two values
     */
-    public void calculateMiddle(int lower, int upper) {
+    public static void calculateMiddle(int lower, int upper) {
 
         int difference = upper - lower;
         if (difference == 0) {
@@ -269,14 +269,12 @@ public Class Controller {
             return;
         }
 
-            halfwayPoint = lower + (difference / 2);
+            middle = lower + (difference / 2);
     }
 
     public void createFittedRectangle() {
-        int heightRectangle = UPPER_LEFT_OLD.getY() - LOWER_LEFT_OLD.getY();
+        int heightRectangle = (int) (UPPER_LEFT_OLD.getY() - LOWER_LEFT_OLD.getY());
         int heighToBeAdded = heightRectangle / 2;
-
-        int halfwaypoint = calculateHalfpoint(textRectangleUpperY, textRectangleLowerY);
 
         int upper = getYCoordinate(image, "Max");
         int lower = getYCoordinate(image, "Min");
@@ -293,8 +291,8 @@ public Class Controller {
     */
     public static void highlightRectangle() {
 
-        for (int x = UPPER_LEFT_FITTED.getX(); x < UPPER_RIGHT_FITTED.getX(); x++) {
-            for (int y = UPPER_LEFT_FITTED.getY(); y < LOWER_LEFT_FITTED.getY(); y++) {
+        for (int x = (int) UPPER_LEFT_FITTED.getX(); x < UPPER_RIGHT_FITTED.getX(); x++) {
+            for (int y = (int) UPPER_LEFT_FITTED.getY(); y < LOWER_LEFT_FITTED.getY(); y++) {
                 //Black for testing, will be changed later
                 image.setColor(x, y, COLOR.BLACK);
     }
