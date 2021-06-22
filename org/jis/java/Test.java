@@ -1,3 +1,5 @@
+package org.jis.java;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +21,6 @@ public class Test {
       e.printStackTrace();
     }
     // Calls testPixelCount method in Controller
-    Controller.testPixelCount(image);
+    ModuleLayer.Controller.testPixelCount(image);
   }
 }
