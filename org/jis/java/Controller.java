@@ -201,39 +201,6 @@ public class Controller {
     }
 
     /**
-     * This test loops over the Dolphins image and
-     * prints out the count of white pixels and of none
-     * white pixels.
-     */
-    public void testPixelCount(BufferedImage image) {
-        Controller c = new Controller();
-        ScreenImage i = new BufferedScreenImage(image);
-
-        int pixelWhite = 0;
-        int pixelNonWhite = 0;
-
-        //Get height and width of the image
-        int height = image.getHeight();
-        int width = image.getWidth();
-
-        //Loop over the image pixel by pixel
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-
-                //Depending on the defined case (min or max), we set the y-Value to
-                //the new highest/lowest value, if it not white.
-                if (!isColorWhite(x, y, image)) {
-                    pixelNonWhite++;
-                } else if (isColorWhite(x, y, image)) {
-                    pixelWhite++;
-                }
-            }
-        }
-        System.out.println("Pixel count white: " + pixelWhite + ".");
-        System.out.println("Pixel count non-white: " + pixelNonWhite + ".");
-    }
-
-    /**
      * This method increases the y-value based on the images height.
      *
      * @param y,     y-coordinate
