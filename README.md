@@ -5,4 +5,4 @@ on the part of the text that you wish to highlight. Since human input is always 
 usually means to make it more straight. We often encounter the issue that we place the line either too high or too low, and 
 thus the highlighted line does not cover all of the text (top to bottom), and things like the top of an "L" get cut off. 
 
-Since it botheres us, we are trying to create a solution to this problem with BetterMarker.
+Since it bothered us, we are trying to create a solution to this problem with BetterMarker.
